@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>google with leaflet</title>
+
+    <!-- <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"
+    /> -->
+
+    <!-- <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"
+    /> -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet-src.js"></script>
+
+    <!-- <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCNqTLINqGHlCIdpbxG3hcFndvGUEKecQ"></script> -->
+
+    <!-- Define la función initMap antes de cargar la API de Google Maps -->
+    <!-- <script src="https://raruto.github.io/cdn/leaflet-google/0.0.3/leaflet-google.js"></script> -->
+
+    <script src="./leaflet-plugins-1.9.3/layer/tile/Google.js"></script>
+    <script>
+      function initMap() {
+        // No es necesario agregar código aquí, ya que Leaflet se encargará del mapa
+      }
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCNqTLINqGHlCIdpbxG3hcFndvGUEKecQ&callback=initMap"
+      async
+      defer
+    ></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCNqTLINqGHlCIdpbxG3hcFndvGUEKecQ"></script> -->
+
+    <style>
+      #map {
+        width: 100%;
+        height: 580px;
+        box-shadow: 5px 5px 5px #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <!-- <script>
+      // Crea el mapa utilizando Leaflet
+      //   var map = L.map("map").setView([0, 0], 2);
+      //   var map = new L.Map('map', {center: new L.LatLng(18.93718 , 72.79366), zoom: 10});
+      var map = L.map("map").setView([0, 0], 2);
+
+      // Agrega una capa base de Google Maps
+      var ggl = new L.Google("ROADMAP");
+      console.log(map);
+      map.addLayer(ggl);
+    </script> -->
+
+    <script>
+    //   var map = L.map("map").setView([0, 0], 2);
+      var map = new L.Map("map", {
+        center: [0, 0],
+        zoom: 2,
+        markerZoomAnimation: false,
+        zoomControl: false,
+      });
+
+      var zoomControl = new L.Control.Zoom({ position: "topright" });
+
+      var ggl = new L.Google("ROADMAP"); // Possible types: SATELLITE, ROADMAP, HYBRID, TERRAIN
+
+      var url = "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+        attr =
+          'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+        otm = new L.TileLayer(url, {
+          attribution: attr,
+          /*subdomains:"1234"*/
+        });
+
+        console.log('holas');
+
+      var baseLayers = {
+        "Google Map": ggl,
+        "Leaflet Map": otm,
+      };
+
+      var layersControl = L.control.layers(baseLayers, null, {
+        collapsed: false,
+      });
+
+      layersControl.addTo(map);
+      zoomControl.addTo(map);
+
+      console.log(ggl);
+      map.addLayer(ggl);
+    </script>
+  </body>
+</html>

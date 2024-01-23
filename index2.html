@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Estilos adicionales (opcional) -->
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+  <script src="https://unpkg.com/leaflet-realtime@2.1.0/dist/leaflet-realtime.js"></script>
+
+</head>
+
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Crear el script para inicializar el mapa -->
+  <script>
+    // Inicializar el mapa
+    var map = L.map('map').setView([0, 0], 2); // [latitud, longitud], zoom
+
+    // Añadir capa base de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // // Crear capa de nubes en tiempo real
+    // var cloudLayer = L.realtime({
+    //       url: './img/cloud.jpg',  // Imagen de prueba (reemplázala con tus imágenes de nubes)
+    //       crossOrigin: true,
+    //       type: 'image',
+    //       updateInterval: 1000  // Intervalo de actualización en milisegundos
+    //   }).addTo(map);
+
+    // // Agregar capa de imagen estática al mapa
+    // var imageUrl = './img/cloud.jpg';  // Ruta local a tu imagen de nubes
+    // var imageBounds = [[-90, -180], [90, 180]];  // Coordenadas de la imagen (ajústalas según sea necesario)
+
+    // L.imageOverlay(imageUrl, imageBounds).addTo(map);
+  </script>
+</body>
+
+</html>
